@@ -2,16 +2,49 @@ CREATE TABLE accessories(
 acces_id  INT PRIMARY KEY NOT NULL,
 NAME       CHAR(25) NOT NULL,
 country  CHAR(25) NOT NULL,
-amount INT PRIMARY KEY NOT NULL
+amount INT  NOT NULL
 );
-INSERT INTO accessories (ID, NAME ,country, amount)
-VALUES (1, 'Phone box', "China" );
+CREATE TABLE stud_diary(
+userId          INT PRIMARY KEY NOT NULL,
 
-INSERT INTO accessories(ID, NAME ,country, amount)
-VALUES (2, 'Screen', "China" );
+coming          CHAR(50) NOT NULL,
+leaving         CHAR(50) NOT NULL,
+studying        CHAR(50) NOT NULL,
+recDate         date     NOT NULL
+);
+ 
+INSERT INTO users_time2 (coming,leaving,studying,recDate)
+VALUES ('nur', 'nur' ,'nur','2020-10-10');
 
-INSERT INTO accessories (ID, NAME ,country, amount)
-VALUES (3, 'Headphone', "Turkish" );
+CREATE TABLE studs(
+last_name       CHAR(10) PRIMARY KEY NOT NULL,
+login           CHAR(10) NOT NULL,
+password        CHAR(10) NOT NULL
+);
+
+CREATE TABLE studs22(
+last_name       CHAR(10) PRIMARY KEY NOT NULL,
+login           CHAR(10) NOT NULL,
+password        CHAR(10) NOT NULL
+);
+S
+INSERT INTO studs (last_name  ,login, password)
+VALUES ('sait', 'China' ,'asdf');
+
+INSERT INTO studs22 (last_name  ,login, password)
+VALUES ('nur', 'nur' ,'nur');
+
+SELECT * FROM studs,studs22 WHERE last_name = 'sait' ;
+
+
+
+
+
+INSERT INTO accessories(acces_id , NAME ,country, amount)
+VALUES (2, 'Screen', 'China' ,13 );
+
+INSERT INTO accessories (acces_id , NAME ,country, amount)
+VALUES (3, 'Headphone', 'Turkish',4 );
 
 
 CREATE TABLE list_of_ac(
@@ -23,16 +56,15 @@ CREATE TABLE list_of_ac(
     FOREIGN KEY (list_id) REFERENCES accessories (acces_id)
 );
 
-INSERT INTO list_of_ac (name,price,color,comming_date)
-VALUES ('Paul', 150 , ak,
-        'Teddy', 250 , bek);
+INSERT INTO list_of_ac (name,price,color)
+VALUES ('Paul', 150 , 'ak');
 
  
-INSERT INTO list_of_ac (name,price,comming_date)
-VALUES ('Mark ', 50 ,kok);
+INSERT INTO list_of_ac (name,price,color)
+VALUES ('Mark ', 50 ,'kok');
 
 
-INSERT INTO TABLE_NAME(COLUMN_NAME) VALUES(VALUE_DATA);
+
 
 SELECT
         accessories.acces_id,
@@ -43,12 +75,21 @@ SELECT
         list_of_ac.comming_date
 FROM
         accessories
-INNER JOIN
-        list_of_ac ON accessories.acces_id = list_of_ac.list_id;
-CREATE TABLE sell_tab(
-    id bigserial,
-    name char(25) NOT NULL,
-    price INT NOT NULL,
-    comming_date date,
-    seller char(25) NOT NULL
-);
+INNER JOIN list_of_ac
+        ON accessories.acces_id = list_of_ac.list_id;
+        ON accessories.amount = list_of_ac.comming_date;
+        ON accessories.NAME = list_of_ac.price;
+        
+create user sait with encrypted password 'mypassword';
+grant all privileges on database postgres to sait;
+alter role sait with login;
+CREATE ROLE demo_role;
+DROP ROLE demo_role;
+DROP ROLE IF EXISTS role_name;
+CREATE ROLE role_name WITH optional_permissions;
+\h CREATE ROLE
+
+CREATE ROLE demo_role WITH LOGIN;
+
+CREATE USER role_name;
+The only difference between the two commands is that "CREATE USER" automatically gives the role login privileges.
